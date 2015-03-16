@@ -4,14 +4,14 @@
       <span class="glyphicon glyphicon-user"></span>
     </div>
     <div>
-        <h2>Usuários</h2>
+        <h2>Users</h2>
     </div>
   </div>
   <div class="search-panel">
     <form class="form-inline" role="form">
       <div class="form-group ">        
-        <button type="button" class="btn btn-primary" data-action="new"><span class="glyphicon glyphicon-plus"></span> Novo</button>
-        <input type="text" class="form-control" id="input-name" placeholder="Busca">      
+        <button type="button" class="btn btn-primary" data-action="new"><span class="glyphicon glyphicon-plus"></span> Add</button>
+        <input type="text" class="form-control" id="input-name" placeholder="Search">      
         <button type="button" class="btn btn-default" data-action="search"><span class="glyphicon glyphicon-search"></span></button>
       </div>
     </form>
@@ -20,8 +20,8 @@
     {{#if collection}}
       <table class="table table-hover table-list">
         <tr>
-          <th>Nome</th>
-          <th>CPF/CNPJ</th> 
+          <th>Name</th>
+          <th>CPF</th> 
           <th>Email</th>
           <th style="width:120px;"></th>
         </tr>
@@ -31,8 +31,8 @@
           <td>{{cpf}}</td> 
           <td>{{email}}</td>
           <td class="buttons">
-            <button type="button" class="btn btn-xs btn-warning" data-param="{{id}}" data-action="edit" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button>
-            <button type="button" class="btn btn-xs btn-danger" data-param="{{id}}"  data-action="delete" title="Excluir"><span class="glyphicon glyphicon-remove"></span></button>
+            <button type="button" class="btn btn-xs btn-warning" data-param="{{id}}" data-action="edit" title="Edit"><span class="glyphicon glyphicon-pencil"></span></button>
+            <button type="button" class="btn btn-xs btn-danger" data-param="{{id}}"  data-action="delete" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
           </td>
         </tr>      
         {{/each}}
@@ -40,7 +40,7 @@
     {{else}}
       <p>
         <hr />
-        <h3 style="text-align:center;">Não existem usuários cadastrados.</h3>
+        <h3 style="text-align:center;">The user list is empty!</h3>
         <hr />
       </p>
     {{/if}}
@@ -53,27 +53,27 @@
       <span class="glyphicon glyphicon-user"></span>
     </div>
     <div>
-        <h2>Novo Usuário</h2>
+        <h2>Add User</h2>
     </div>
   </div>
   <form class="form-horizontal" role="form">
     <input id="form-id" type="hidden" value="{{id}}">
     <div class="form-group">
-      <label for="input-name" class="col-md-2 control-label">Nome</label>
+      <label for="input-name" class="col-md-2 control-label">Name</label>
       <div class="col-md-4">
-        <input id="form-nome" type="text" class="form-control" placeholder="Nome" value="{{nome}}">
+        <input id="form-nome" type="text" class="form-control" placeholder="Name" value="{{nome}}">
       </div>
     </div>
     <div class="form-group">
-      <label for="input-cpf-cnpj" class="col-md-2 control-label">CPF/CNPJ</label>
+      <label for="input-cpf-cnpj" class="col-md-2 control-label">CPF</label>
       <div class="col-md-4">
-        <input id="form-cpf" type="text" class="form-control" placeholder="CPF/CNPJ" value="{{cpf}}">
+        <input id="form-cpf" type="text" class="form-control" placeholder="CPF" value="{{cpf}}">
       </div>
     </div>
     <div class="form-group">
-      <label for="input-password" class="col-md-2 control-label">Senha</label>
+      <label for="input-password" class="col-md-2 control-label">Password</label>
       <div class="col-md-4">
-        <input id="form-pwd" type="password" class="form-control" placeholder="Senha">
+        <input id="form-pwd" type="password" class="form-control" placeholder="Password">
       </div>
     </div>
      <div class="form-group">
@@ -84,19 +84,19 @@
     </div>
 
     <div class="form-group">
-      <label class="col-md-2 control-label">Perfil</label>
+      <label class="col-md-2 control-label">Profile</label>
       <div class="col-md-4">
        <select id="form-perfil" class="form-control">
-          <option {{selected perfil "0"}} value="0">Administrador</option>
-          <option {{selected perfil "1"}} value="1">Cliente</option>
+          <option {{selected perfil "0"}} value="0">Admin</option>
+          <option {{selected perfil "1"}} value="1">User</option>
         </select>
       </div>
     </div>
     
     <div class="form-group">
       <div class="col-md-offset-2 col-sm-10">
-        <button type="button" class="btn btn-primary" data-action="back">Voltar</button>
-        <button type="button" class="btn btn-warning" data-action="save">Salvar</button>
+        <button type="button" class="btn btn-primary" data-action="back">Back</button>
+        <button type="button" class="btn btn-warning" data-action="save">Save</button>
       </div>
     </div>
   </form>

@@ -1,5 +1,5 @@
-define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session'], 
-  function(logger, tmp, states, auth, session)
+define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session', 'fw/app-view'], 
+  function(logger, tmp, states, auth, session, appView)
 {
 	Handlebars.registerHelper('selected', function(x, y) {
   		return x == y ? ' selected' : '';
@@ -46,8 +46,14 @@ define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session'],
 			this.children[key] = v;
 			return v;
 		},
-		start : function(AppView, config)
+		first : function(view, key)
 		{
+			return this.register(view, key, true);
+		},
+		start : function(config, hostView)
+		{
+			hostView = hostView || appView;
+
 			var that = this;
 			var mainView = null;
 
@@ -79,7 +85,7 @@ define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session'],
 					auth.authorized(function(data){
 						session.save(data);
 						loginScreen.modal('hide');					
-						mainView = new AppView();
+						mainView = new hostView();
 						states.initialize();
 						states.go();
 					});
@@ -96,7 +102,7 @@ define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session'],
 			}
 			else
 			{
-				mainView = new AppView();
+				mainView = new hostView();
 				states.initialize();
 				states.go();
 			}			

@@ -17,10 +17,10 @@ define(['fw/logger', 'fw/modal'], function(logger, modal)
 
 		_execute: function(async, cmd, data, callback)
 		{
-			var params = {command:cmd, args:data};
+			var params = {args:data};
 			var stringJSON = JSON.stringify(params);
 			$.ajax({
-				url: "api/",
+				url: cmd,
 				data: {data: stringJSON},
 				success: function(data)
 				{

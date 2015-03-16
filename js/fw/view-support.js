@@ -4,6 +4,8 @@ define(["fw/template", "fw/logger", "fw/states", "fw/utils"], function(tmp, logg
 
 		render: function(template, modelField, id) 
 		{
+			template = template || this.template;
+
 			this._preRender();
 			this._render(template, modelField, id);
 			this._postRender();
