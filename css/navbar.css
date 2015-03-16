@@ -1,0 +1,54 @@
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.navbar {
+	margin-bottom: 20px;
+}
+
+.title-panel {
+	background-color: #CDCDCD;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+
+.title-panel div:first-of-type {
+	background-color: #CDCDCD;
+	display: inline-block;
+	padding: 0px 25px 0px 30px;
+	font-size: 2em;
+}
+
+.title-panel div {
+	background-color: #CDCDCD;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	padding: 5px 15px 10px 15px;
+}
+
+.search-panel {
+	padding: 6px 4px 6px 6px;
+	background-color: #EDEDED;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+
+table.table-list tr {
+	vertical-align: middle;
+	height: 40px;
+}
+
+td.buttons {
+	text-align: right;
+}
+
+td.buttons button {
+	margin-right: 4px;
+	display:none;
+}
+
+tr:hover button {
+	display:inline-block;
+}

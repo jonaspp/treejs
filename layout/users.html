@@ -1,0 +1,103 @@
+<script id="template-users" type="text/x-handlebars-template">
+  <div class="title-panel" >
+    <div>
+      <span class="glyphicon glyphicon-user"></span>
+    </div>
+    <div>
+        <h2>Usuários</h2>
+    </div>
+  </div>
+  <div class="search-panel">
+    <form class="form-inline" role="form">
+      <div class="form-group ">        
+        <button type="button" class="btn btn-primary" data-action="new"><span class="glyphicon glyphicon-plus"></span> Novo</button>
+        <input type="text" class="form-control" id="input-name" placeholder="Busca">      
+        <button type="button" class="btn btn-default" data-action="search"><span class="glyphicon glyphicon-search"></span></button>
+      </div>
+    </form>
+  </div>    
+  <p>
+    {{#if collection}}
+      <table class="table table-hover table-list">
+        <tr>
+          <th>Nome</th>
+          <th>CPF/CNPJ</th> 
+          <th>Email</th>
+          <th style="width:120px;"></th>
+        </tr>
+        {{#each collection}}
+        <tr>
+          <td>{{nome}}</td>
+          <td>{{cpf}}</td> 
+          <td>{{email}}</td>
+          <td class="buttons">
+            <button type="button" class="btn btn-xs btn-warning" data-param="{{id}}" data-action="edit" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button>
+            <button type="button" class="btn btn-xs btn-danger" data-param="{{id}}"  data-action="delete" title="Excluir"><span class="glyphicon glyphicon-remove"></span></button>
+          </td>
+        </tr>      
+        {{/each}}
+      </table>
+    {{else}}
+      <p>
+        <hr />
+        <h3 style="text-align:center;">Não existem usuários cadastrados.</h3>
+        <hr />
+      </p>
+    {{/if}}
+  </p>
+</script>
+
+<script id="template-user-edit" type="text/x-handlebars-template">
+  <div class="title-panel" >
+    <div>
+      <span class="glyphicon glyphicon-user"></span>
+    </div>
+    <div>
+        <h2>Novo Usuário</h2>
+    </div>
+  </div>
+  <form class="form-horizontal" role="form">
+    <input id="form-id" type="hidden" value="{{id}}">
+    <div class="form-group">
+      <label for="input-name" class="col-md-2 control-label">Nome</label>
+      <div class="col-md-4">
+        <input id="form-nome" type="text" class="form-control" placeholder="Nome" value="{{nome}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="input-cpf-cnpj" class="col-md-2 control-label">CPF/CNPJ</label>
+      <div class="col-md-4">
+        <input id="form-cpf" type="text" class="form-control" placeholder="CPF/CNPJ" value="{{cpf}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="input-password" class="col-md-2 control-label">Senha</label>
+      <div class="col-md-4">
+        <input id="form-pwd" type="password" class="form-control" placeholder="Senha">
+      </div>
+    </div>
+     <div class="form-group">
+      <label for="input-email" class="col-md-2 control-label">Email</label>
+      <div class="col-md-4">
+        <input id="form-email" type="email" class="form-control" placeholder="Email" value="{{email}}">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label">Perfil</label>
+      <div class="col-md-4">
+       <select id="form-perfil" class="form-control">
+          <option {{selected perfil "0"}} value="0">Administrador</option>
+          <option {{selected perfil "1"}} value="1">Cliente</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-md-offset-2 col-sm-10">
+        <button type="button" class="btn btn-primary" data-action="back">Voltar</button>
+        <button type="button" class="btn btn-warning" data-action="save">Salvar</button>
+      </div>
+    </div>
+  </form>
+</script>
