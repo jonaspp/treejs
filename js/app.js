@@ -1,5 +1,5 @@
-require(['fw/engine', 'fw/template', 'views/home-view', 'views/users-view', 'views/about-view'], 
-  function(eng, tmp, homeView, usersView, aboutView)
+require(['treejs/engine', 'views/home-view', 'views/users-view', 'views/about-view'], 
+  function(eng, homeView, usersView, aboutView)
 {
 
   var config = {
@@ -15,4 +15,5 @@ require(['fw/engine', 'fw/template', 'views/home-view', 'views/users-view', 'vie
   eng.register(aboutView, "#about");
 
   eng.start(config);
+  
 });

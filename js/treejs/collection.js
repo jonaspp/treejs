@@ -1,19 +1,20 @@
-define(["fw/command", "fw/utils"], function(cmd, utils)
+define(["treejs/command", "treejs/utils", "treejs/logger"], function(cmd, utils, logger)
 {
 	var collection = function(){
 		this.initialize = function(){
 			this.listeners = [];
+			this.collection = [];
 			if(this.fetchUrl == undefined)
 			{
-				throw "fetchUrl undefined ";
+				logger.warn("fetchUrl undefined for " + this.name);
 			}
 			if(this.saveUrl == undefined)
 			{
-				throw "saveUrl undefined ";
+				logger.warn("saveUrl undefined for " + this.name);
 			}
 			if(this.deleteUrl == undefined)
 			{
-				throw "deleteUrl undefined ";
+				logger.warn("deleteUrl undefined for " + this.name);
 			}
 			if(this.key == undefined)
 			{
@@ -30,24 +31,17 @@ define(["fw/command", "fw/utils"], function(cmd, utils)
 			}
 		};
 		this.set = function(single){
-			if(single.id == "-1")
-			{
-				this.collection.push(single);
-				return;
-			}
 			for(var i in this.collection)
 			{
 				if(this.collection[i][this.key] == single.id)
 				{
 					this.collection[i] = single;
+					return;
 				}
 			}
+			this.collection.push(single);
 		};
 		this.remove = function(single){
-			if(single.id == "-1")
-			{
-				return;
-			}
 			for(var i in this.collection)
 			{
 				if(this.collection[i][this.key] == single.id)
@@ -57,8 +51,11 @@ define(["fw/command", "fw/utils"], function(cmd, utils)
 			}
 		};
 		this.fetch = function(){
-			var data = cmd.query(this.fetchUrl, {});
-			this.collection = data.collection;
+			if(this.fetchUrl != undefined)
+			{
+				var data = cmd.query(this.fetchUrl, {});
+				this.collection = data.collection;
+			}
 			return this;
 		};
 		this.asArray = function(){
@@ -68,51 +65,71 @@ define(["fw/command", "fw/utils"], function(cmd, utils)
 			}
 			return this.fetch().collection;
 		};
-		this.save = function(single, async, callback){
-			var that = this;
+		this.save = function(single, async){
+			
 			if(utils.isEmpty(single.id))
 			{
-				single.id = "-1";
+				single.id = utils.randomString(8);
 			}
-			if(async)
+
+			if(this.saveUrl != undefined)
 			{
-				var data = cmd.query(this.saveUrl, single);
-				if(!data.error)
+				if(async)
 				{
-					single.id = data.id;
-					that.set(single);
-					this._notify();
+					var that = this;
+					cmd.execute(this.saveUrl, single, function(data){
+						if(!data.error)
+						{
+							single.id = data.id;
+							that.set(single);
+						}
+						that._notify();
+					});
 				}
-				return data;
-			}
-			else
-			{
-				cmd.execute(this.saveUrl, single, function(data){
+				else
+				{
+					var data = cmd.query(this.saveUrl, single);
 					if(!data.error)
 					{
 						single.id = data.id;
-						that.set(single);
+						this._notify();
 					}
-					that._notify();
-				});
-			}			
-		};
-		this.delete = function(single, async, callback){
-			var that = this;
-			if(async)
-			{
-				var r = cmd.query(this.deleteUrl, single);
-				this.remove(single);
+					return data;
+				}
+			}
+			else
+			{				
+				this.set(single);
 				this._notify();
-				return r;
+				return single; 
+			}		
+		};
+		this.delete = function(single, async){
+			if(this.saveUrl != undefined)
+			{
+				if(async)
+				{
+					var that = this;
+					cmd.execute(this.deleteUrl, single, function(){
+						that.remove(single);
+						that._notify();
+					});
+				}
+				else
+				{
+					var r = cmd.query(this.deleteUrl, single);
+					this.remove(single);
+					this._notify();
+					return r;
+				}	
+
 			}
 			else
 			{
-				cmd.execute(this.deleteUrl, single, function(){
-					that.remove(single);
-					that._notify();
-				});
-			}	
+				this.remove(single);
+				this._notify();
+				return single;				
+			}
 		};
 		this.attach = function(callback) {
 			if(!_.contains(this.listeners, callback))

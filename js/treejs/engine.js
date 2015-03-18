@@ -1,4 +1,4 @@
-define(['fw/logger', 'fw/template', 'fw/states', 'fw/auth', 'fw/session', 'fw/app-view'], 
+define(['treejs/logger', 'treejs/template', 'treejs/states', 'treejs/auth', 'treejs/session', 'treejs/app-view'], 
   function(logger, tmp, states, auth, session, appView)
 {
 	Handlebars.registerHelper('selected', function(x, y) {

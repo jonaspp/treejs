@@ -1,4 +1,4 @@
-define(['fw/view-support', 'fw/modal'], function(viewSupport, modal) {
+define(['treejs/view-support', 'treejs/modal'], function(viewSupport, modal) {
 
 	var aboutView = viewSupport.extend({
 

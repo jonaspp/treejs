@@ -1,4 +1,4 @@
-define(['fw/template', 'fw/command', 'fw/states', 'views/menu-view', 'fw/logger', 'fw/utils'], function(tmp, cmd, states, MenuView, logger, utils) {
+define(['treejs/template', 'treejs/command', 'treejs/states', 'views/menu-view', 'treejs/logger', 'treejs/utils'], function(tmp, cmd, states, MenuView, logger, utils) {
 
   var AppView = Backbone.View.extend({
 

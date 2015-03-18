@@ -1,4 +1,4 @@
-define(['fw/logger'], function(logger)
+define(['treejs/logger'], function(logger)
 {
 	var MyRouter = Backbone.Router.extend({
 		routes: {

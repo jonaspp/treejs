@@ -1,4 +1,4 @@
-define(['fw/template', 'fw/utils'], function(tmp, utils){
+define(['treejs/template', 'treejs/utils'], function(tmp, utils){
 	return {
 		alert: function(title, message) {
 

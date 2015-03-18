@@ -1,4 +1,4 @@
-define(['fw/logger'], function(logger)
+define(['treejs/logger'], function(logger)
 {
 	return {
 		initialize : function(root)

@@ -1,4 +1,4 @@
-define(["fw/template", "fw/logger", "fw/states", "fw/utils"], function(tmp, logger, states, utils) {
+define(["treejs/template", "treejs/logger", "treejs/states", "treejs/utils"], function(tmp, logger, states, utils) {
 
 	var ViewSupport = Backbone.View.extend({
 

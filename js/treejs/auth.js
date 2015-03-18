@@ -1,4 +1,4 @@
-define(['fw/command', 'fw/modal'], function(cmd, modal)
+define(['treejs/command', 'treejs/modal'], function(cmd, modal)
 {
 	return {
 		initialize: function()

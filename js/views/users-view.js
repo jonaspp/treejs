@@ -1,4 +1,4 @@
-define(["fw/template", "fw/logger", "fw/view-support", "fw/states", "fw/command", "models/users", "fw/modal"], function(tmp, logger, viewSupport, states, cmd, users, modal) {
+define(["treejs/template", "treejs/logger", "treejs/view-support", "treejs/states", "treejs/command", "models/users", "treejs/modal"], function(tmp, logger, viewSupport, states, cmd, users, modal) {
 
 	var UsersView = viewSupport.extend({
 

@@ -1,4 +1,4 @@
-define(['fw/command', 'fw/view-support', 'fw/modal', 'fw/auth', 'fw/states'], function(cmd, viewSupport, modal, auth, states) {
+define(['treejs/command', 'treejs/view-support', 'treejs/modal', 'treejs/auth', 'treejs/states'], function(cmd, viewSupport, modal, auth, states) {
 
 	var HomeView = viewSupport.extend({
 

@@ -1,4 +1,4 @@
-define(['fw/template'], function(tmp) {
+define(['treejs/template'], function(tmp) {
 
 	var MenuView = Backbone.View.extend({
 	  render: function() {

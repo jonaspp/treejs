@@ -1,4 +1,4 @@
-define(['fw/logger', 'fw/modal'], function(logger, modal)
+define(['treejs/logger', 'treejs/modal'], function(logger, modal)
 {
 	return {
 		query: function(cmd, data)
